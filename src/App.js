@@ -56,7 +56,7 @@ const Topics = ({ match }) => (
 )
 
 const BasicExample = () => (
-    <Router>
+    <Router basename="/cms/">
       <div className="container">
           <div className="header">
               <ul>
