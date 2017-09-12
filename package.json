@@ -11,6 +11,7 @@
     "react-file-reader-input": "^1.1.4",
     "react-images-upload": "^1.1.1",
     "react-images-uploader": "^1.1.0",
+    "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.11",
     "react-table": "^6.5.3",
