@@ -82,6 +82,7 @@ const BasicExample = () => (
         {/*<hr/>*/}
 
         <div className="content">
+            <Route exact path="/" component={Users}/>
             <Route path="/users" component={Users}/>
             <Route path="/uploads" component={UploadImg}/>
             <Route path="/topics" component={Topics}/>
