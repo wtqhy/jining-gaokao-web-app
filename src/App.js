@@ -8,88 +8,60 @@ import {
 import './App.css'
 import UploadImg from './UploadImg'
 import Users from './Users'
+import Login from './Login'
 
-const Home = () => (
-    <div>
-      <h2>Home</h2>
-    </div>
+const MyLink = ({ label, to, activeOnlyWhenExact }) => (
+    <Route path={to} exact={activeOnlyWhenExact} children={({ match }) => (
+        <Link className={'nav-link '+(match? 'active' : '')} to={to}>{label}</Link>
+        )}/>
 )
 
-const About = () => (
-    <div>
-      <h2>About</h2>
-    </div>
-)
+export default class App extends React.Component {
 
-const Topic = ({ match }) => (
-    <div>
-      <h3>{match.params.topicId}</h3>
-    </div>
-)
+    constructor(props) {
+        super(props)
+        this.linkTapAction = this.linkTapAction.bind(this);
+    }
 
-const Topics = ({ match }) => (
-    <div>
-      <h2>Topics</h2>
-      <ul>
-        <li>
-          <Link to={`${match.url}/rendering`}>
-            Rendering with React
-          </Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/components`}>
-            Components
-          </Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/props-v-state`}>
-            Props v. State
-          </Link>
-        </li>
-      </ul>
+    linkTapAction(obj) {
 
-      <Route path={`${match.url}/:topicId`} component={Topic}/>
-      <Route exact path={match.url} render={() => (
-          <h3>Please select a topic.</h3>
-      )}/>
-    </div>
-)
+    }
 
-const BasicExample = () => (
-    <Router basename="/cms/">
-      <div className="container">
-          <div className="header">
-              <ul>
-                  <li>
-                      <Link to="/users">报名信息查询</Link>
-                  </li>
+    render() {
+        return (
+            <Router>
+                <div>
+                    <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                        <a className="navbar-brand" href="#">CMS</a>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarCollapse">
+                            <div className="navbar-nav mr-auto">
+                                <MyLink activeOnlyWhenExact={true} to='/' label='报名用户'/>
+                                <MyLink to='/banners' label='轮播图'/>
+                                <MyLink to='/topics' label='课程介绍'/>
+                                <MyLink to='/uploads' label="图片上传"/>
 
-                  <li>
-                      <Link to="">轮播图数据</Link>
-                  </li>
+                            </div>
 
-                  <li>
-                      <Link to="/topics">图片列表</Link>
-                  </li>
+                            <form className="form-inline mt-2 mt-md-0">
+                                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">登录</button>
+                            </form>
+                        </div>
+                    </nav>
 
-                  <li>
-                      <Link to="/uploads">上传图片</Link>
-                  </li>
+                    <div className="content_div">
+                        <Route exact path="/" component={Users}/>
+                        <Route path="/uploads" component={UploadImg}/>
+                        <Route path="/banners"/>
+                        <Route path="/topics"/>
+                    </div>
 
-              </ul>
-          </div>
+                </div>
+            </Router>
+        )
+    }
+}
 
-        {/*<hr/>*/}
-
-        <div className="content">
-            <Route exact path="/" component={Users}/>
-            <Route path="/users" component={Users}/>
-            <Route path="/uploads" component={UploadImg}/>
-            <Route path="/topics" component={Topics}/>
-        </div>
-
-      </div>
-    </Router>
-)
-export default BasicExample
 

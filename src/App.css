@@ -1,50 +1,70 @@
+/*
+ * Base structure
+ */
 
-.container {
-  display: flex;
-  flex-direction: column;
+/* Move down content because we have a fixed navbar that is 3.5rem tall */
+body {
+  padding-top: 3.5rem;
+}
+
+/*
+ * Typography
+ */
+
+h1 {
+  margin-bottom: 20px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  border-right: 1px solid #eee;
+}
+
+/* Sidebar navigation */
+.sidebar {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar .nav {
+  margin-bottom: 20px;
+}
+
+.sidebar .nav-item {
   width: 100%;
-  height:auto;
-  justify-content: flex-start;
 }
 
-.header {
-  display: flex;
-  flex-direction: row;
-  background-color: #222;
-  height: 64px;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  /*color: aqua;*/
+.sidebar .nav-item + .nav-item {
+  margin-left: 0;
 }
 
-.header_title {
-  color: white;
+.sidebar .nav-link {
+  border-radius: 0;
 }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height:100%;
-  justify-content: center;
+/*
+ * Dashboard
+ */
+
+/* Placeholders */
+.placeholders {
+  padding-bottom: 3rem;
 }
 
-ul {
-  list-style-type: none;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: flex-start;
+.placeholder img {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
-
-li {
-  padding-right: 10px;
-}
-
-a:link {color: white}
-a:visited {color: white}
-a:hover {color: coral}
-a:active {color: bisque}

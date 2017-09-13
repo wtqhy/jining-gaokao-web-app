@@ -4,8 +4,7 @@
 
 import React, { Component } from 'react';
 import request from 'superagent';
-import ReactTable from 'react-table'
-import 'react-table/react-table.css'
+import './Users.css'
 
 export default class Users extends React.Component {
 
@@ -44,36 +43,35 @@ export default class Users extends React.Component {
     }
 
     render() {
+        console.log('users:' + this.state.users);
+        const items = this.state.users
+            .filter((value) =>
+                value.name != null&&value.name != ''
+            )
+            .map((value, index) =>
+            <tr>
+                <th scope="row">{index + 1}</th>
+                <td>{value.name}</td>
+                <td>{value.phoneNum}</td>
+                <td>{value.email}</td>
+                <td>{value.wxID}</td>
+            </tr>
+        );
 
-        const columns = [
-            {
-                Header: '姓名',
-                accessor: 'name'
-            },
-
-            {
-                Header: '手机号码',
-                accessor: 'phoneNum',
-            },
-
-            {
-                Header: '邮箱',
-                accessor: 'email',
-            },
-            {
-                Header: '微信',
-                accessor: 'wxID'
-            }
-            ];
-
-           return (
-               <div className="container">
-                   <ReactTable className="-striped -highlight"
-                               data={this.state.users}
-                               columns={columns} />
-               </div>
-
-           )
-
+        console.log('users:' + items);
+        return (
+            <table className="table table-striped users_table">
+                <thead className="thead-inverse">
+                <tr>
+                    <th>#</th>
+                    <th>姓名</th>
+                    <th>手机号码</th>
+                    <th>邮箱</th>
+                    <th>微信</th>
+                </tr>
+                </thead>
+                <tbody>{items}</tbody>
+            </table>
+        )
     }
 }
